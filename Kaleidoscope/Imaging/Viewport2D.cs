@@ -1,9 +1,9 @@
 ﻿using KaleidoscopeGenerator.Data;
+using KaleidoscopeGenerator.UI.WPF.ViewModel;
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace KaleidoscopeGenerator.UI.WPF.Imaging
 {
@@ -15,7 +15,6 @@ namespace KaleidoscopeGenerator.UI.WPF.Imaging
         public Viewport2D()
         {
             _kaleidoscopes = new KaleidoscopeFactory<Node2D, Geometry2D, Transformation2D>();
-            ClipToBounds = true;
             SizeChanged += OnSizeChanged;
             Loaded += OnLoaded;
             Unloaded += OnUnloaded;
@@ -23,14 +22,15 @@ namespace KaleidoscopeGenerator.UI.WPF.Imaging
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            var settings = DataContext as SettingsModel;
+            var settings = ((AppModel)DataContext).Settings;
             settings.PropertyChanged += OnPropertyChange;
         }
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            var settings = DataContext as SettingsModel;
-            settings.PropertyChanged -= OnPropertyChange;
+            // settings is null, maybe we dont need this
+            //var settings = ((AppModel)DataContext).Settings;
+            //settings.PropertyChanged -= OnPropertyChange;
         }
 
         private void OnPropertyChange(object sender, PropertyChangedEventArgs e)
@@ -46,10 +46,13 @@ namespace KaleidoscopeGenerator.UI.WPF.Imaging
 
         private void RenderKaleidoscope()
         {
-            var settings = DataContext as SettingsModel;
+            var context = DataContext as AppModel;
+            if (context == null)
+                return;
+            var settings = context.Settings;
 
             var kaleidoscope = _kaleidoscopes.Get(settings.SelectedKaleidoscopeType.Type);
-            var imageUri = new Uri(settings.ImagePath, UriKind.RelativeOrAbsolute);
+            var imageUri = new Uri(settings.ImagePath, UriKind.Absolute);
             var rootNode = kaleidoscope.Generate(settings.GeometryWidth, imageUri, ActualWidth, ActualHeight);
 
             var drawingFromCenter = new DrawingGroup();

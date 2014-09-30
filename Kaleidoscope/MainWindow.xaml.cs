@@ -1,11 +1,10 @@
-﻿using System.ComponentModel;
-using System.Windows;
+﻿using KaleidoscopeGenerator.Data;
+using KaleidoscopeGenerator.UI.WPF.FileSystem;
+using KaleidoscopeGenerator.UI.WPF.ViewModel;
 using Microsoft.Win32;
 using System;
-using System.Xml.Serialization;
-using System.IO;
-using KaleidoscopeGenerator.UI.WPF.FileSystem;
-using System.Reflection;
+using System.ComponentModel;
+using System.Windows;
 
 namespace KaleidoscopeGenerator.UI.WPF
 {
@@ -16,22 +15,45 @@ namespace KaleidoscopeGenerator.UI.WPF
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new SettingsModel();
+            DataContext = new AppModel()
+            {
+                Settings = new SettingsModel(),
+                Renderer = new RendererModel()
+            };
+            ((AppModel)DataContext).Renderer.PropertyChanged += OnPropertyChange;
             _fileSystem = new XmlInteraction();
         }
 
+        private void OnPropertyChange(object sender, PropertyChangedEventArgs e)
+        {
+            System.Console.WriteLine("Property changed: " + e.PropertyName + " to " + ((AppModel)DataContext).Renderer.RendererType);
+        }
+
+
+        void OnClickTest(object sender, RoutedEventArgs a)
+        {
+            var ren = ((AppModel)DataContext).Renderer;
+            if (ren.RendererType == "2D")
+            {
+                ren.RendererType = "3D";
+            }
+            else
+            {
+                ren.RendererType = "2D";
+            }
+        }
         void OnClickSelectImage(object sender, RoutedEventArgs a)
-		{
-			var dlg = new OpenFileDialog();
+        {
+            var dlg = new OpenFileDialog();
             // dlg.Filter = "Text documents (.jpg)|*.png"; // do we need a filter?
 
             Nullable<bool> result = dlg.ShowDialog();
             if (result == true)
             {
-                var settings = DataContext as SettingsModel;
+                var settings = ((AppModel)DataContext).Settings;
                 settings.ImagePath = dlg.FileName;
             }
-		}
+        }
 
         void OnClickSaveSettings(object sender, RoutedEventArgs a)
         {   
@@ -44,7 +66,8 @@ namespace KaleidoscopeGenerator.UI.WPF
             {
                 try
                 {
-                    _fileSystem.save(DataContext, dlg.FileName);
+                    var settings = ((AppModel)DataContext).Settings;
+                    _fileSystem.save(settings, dlg.FileName);
                 }
                 catch (Exception e)
                 {
@@ -66,7 +89,7 @@ namespace KaleidoscopeGenerator.UI.WPF
                 try
                 {
                     var loadedSettings = _fileSystem.load<SettingsModel>(dlg.FileName);
-                    ((SettingsModel)DataContext).Merge(loadedSettings);
+                    ((AppModel)DataContext).Settings.Merge(loadedSettings);
                 }
                 catch (Exception e)
                 {

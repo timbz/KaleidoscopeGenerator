@@ -1,33 +1,39 @@
 ﻿using KaleidoscopeGenerator.Data;
 using System;
 using System.ComponentModel;
+using System.IO;
 using System.Reflection;
 using System.Xml.Serialization;
 
-namespace KaleidoscopeGenerator.UI.WPF
+namespace KaleidoscopeGenerator.UI.WPF.ViewModel
 {
-    public class KaleidoscopeTypeComboxBoxItem
-    {
-        public string Name { get; set; }
-        public KaleidoscopeType Type { get; set; }
-
-        public override bool Equals(System.Object obj)
-        {
-            if (obj == null)
-            {
-                return false;
-            }
-            var item = obj as KaleidoscopeTypeComboxBoxItem;
-            if (item == null)
-            {
-                return false;
-            }
-            return item.Type == Type;
-        }
-    }
-
     public class SettingsModel : INotifyPropertyChanged
     {
+        public class KaleidoscopeTypeComboxBoxItem
+        {
+            public string Name { get; set; }
+            public KaleidoscopeType Type { get; set; }
+
+            public override int GetHashCode()
+            {
+                return Type.GetHashCode();
+            }
+
+            public override bool Equals(System.Object obj)
+            {
+                if (obj == null)
+                {
+                    return false;
+                }
+                var item = obj as KaleidoscopeTypeComboxBoxItem;
+                if (item == null)
+                {
+                    return false;
+                }
+                return item.Type == Type;
+            }
+        }
+
         private int _geometryWidth;
         private int _maxGeometryWidth;
         private int _minGeometryWidth;
@@ -44,7 +50,7 @@ namespace KaleidoscopeGenerator.UI.WPF
             _minGeometryWidth = 50;
             _maxGeometryWidth = 400;
             _geometryWidth = 200;
-            _imagePath = @"Assets\default.png";
+            _imagePath = Path.GetFullPath(@"Assets/default.png"); ;
 
             _availableKaleidoscopeTypes = new KaleidoscopeTypeComboxBoxItem[] 
             {
@@ -146,7 +152,8 @@ namespace KaleidoscopeGenerator.UI.WPF
                 }
             }
         }
-        private void OnPropertyChanged(String info)
+        
+        private void OnPropertyChanged(string info)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null)

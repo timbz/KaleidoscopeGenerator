@@ -2,7 +2,35 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:imaging="clr-namespace:KaleidoscopeGenerator.UI.WPF.Imaging"
+        xmlns:madia3d="clr-namespace:KaleidoscopeGenerator.UI.WPF.Media3D"
+        xmlns:models="clr-namespace:KaleidoscopeGenerator.UI.WPF.ViewModel"
         Title="Kaleidoscope Simulator"  WindowStartupLocation="CenterScreen" Width="1200" Height="800" >
+  <Window.Resources>
+
+    <DataTemplate x:Key="2DTemplate" DataType="{x:Type models:AppModel}">
+      <imaging:Viewport2D ClipToBounds="True" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="3DTemplate" DataType="{x:Type models:AppModel}">
+      <madia3d:Vieport3DExt ClipToBounds="True" />
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type models:AppModel}">
+      <ContentControl Content="{Binding }">
+        <ContentControl.Style>
+          <Style TargetType="{x:Type ContentControl}">
+            <Setter Property="ContentTemplate" Value="{StaticResource 2DTemplate}" />
+            <Style.Triggers>
+              <DataTrigger Binding="{Binding Renderer.RendererType}" Value="3D">
+                <Setter Property="ContentTemplate" Value="{StaticResource 3DTemplate}" />
+              </DataTrigger>
+            </Style.Triggers>
+          </Style>
+        </ContentControl.Style>
+      </ContentControl>
+    </DataTemplate>
+    
+  </Window.Resources>
   <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="*" MaxWidth="300"/>
@@ -19,7 +47,7 @@
       Grid.Row="1">
       <TextBox.Text>
         <!--UpdateSourceTrigger="PropertyChanged" for TextBox otherwise its LostFocus-->
-        <Binding Path="GeometryWidth" UpdateSourceTrigger="PropertyChanged">
+        <Binding Path="Settings.GeometryWidth" UpdateSourceTrigger="PropertyChanged">
           <Binding.ValidationRules>
             <ExceptionValidationRule />
           </Binding.ValidationRules>
@@ -27,17 +55,16 @@
       </TextBox.Text>
     </TextBox>
     <ComboBox
-      ItemsSource="{Binding AvailableKaleidoscopeTypes}"
-      SelectedItem="{Binding SelectedKaleidoscopeType}" 
+      ItemsSource="{Binding Settings.AvailableKaleidoscopeTypes}"
+      SelectedItem="{Binding Settings.SelectedKaleidoscopeType}" 
       DisplayMemberPath="Name"
       Grid.Column="0"
 	    HorizontalAlignment="Left"
 	    Margin="10,40,0,0"
 	    VerticalAlignment="Top"
 	    Width="120" />
-    <imaging:Viewport2D x:Name="TheRenderer2D" Grid.Column="1" />
     <Button
-      Content="{Binding ImagePath}"
+      Content="{Binding Settings.ImagePath}"
       HorizontalAlignment="Left"
 	    Margin="10,80,0,0"
 	    VerticalAlignment="Top"
@@ -60,6 +87,18 @@
 	    Width="120"
       Height="22"
       Click="OnClickLoadSettings"/>
-    <Image Width="200" Source="{Binding ImagePath}"/>
+    <Image Width="200" Source="{Binding Settings.ImagePath}" />
+   
+    <Button
+      Content="{Binding Renderer.RendererTypeOther, Mode=OneWay}"
+      ContentStringFormat="Switch to {0}"
+      Grid.Column="0"
+	    HorizontalAlignment="Left"
+	    Margin="10,160,40,0"
+	    VerticalAlignment="Top"
+	    Width="120"
+      Click="OnClickTest"
+      />
+    <ContentControl Content="{Binding }" Grid.Column="1" />
   </Grid>
 </Window>

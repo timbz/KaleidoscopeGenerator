@@ -68,6 +68,7 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Compile Include="Media3D\Vieport3DExt.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -89,7 +90,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SettingsModel.cs" />
+    <Compile Include="Media3D\Geometry3D.cs" />
+    <Compile Include="Media3D\Node3D.cs" />
+    <Compile Include="Media3D\Transformation3D.cs" />
+    <Compile Include="ViewModel\AppModel.cs" />
+    <Compile Include="ViewModel\RendererModel.cs" />
+    <Compile Include="ViewModel\SettingsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -139,9 +145,7 @@
       <Name>KaleidoscopeGenerator.Data</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Media3D\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Assets\default.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

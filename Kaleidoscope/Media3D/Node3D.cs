@@ -2,31 +2,32 @@
 using System;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 
-namespace KaleidoscopeGenerator.UI.WPF.Imaging
+namespace KaleidoscopeGenerator.UI.WPF.Media3D
 {
-    class Node2D : INode<Node2D, Geometry2D, Transformation2D>
+    class Node3D : INode<Node3D, Geometry3D, Transformation3D>
     {
-        private Transformation2D _transformation;
-        private Geometry2D _geometry;
+        private Transformation3D _transformation;
+        private Geometry3D _geometry;
 
-        public Node2D()
+        public Node3D()
         {
-            Drawing = new DrawingGroup();
+            Model3D = new Model3DGroup();
         }
 
-        public DrawingGroup Drawing
+        public Model3DGroup Model3D
         {
             get;
             private set;
         }
 
-        public void AddChild(Node2D child)
+        public void AddChild(Node3D child)
         {
-            Drawing.Children.Add(child.Drawing);
+            Model3D.Children.Add(child.Model3D);
         }
 
-        public Geometry2D Geometry
+        public Geometry3D Geometry
         {
             get
             {
@@ -35,11 +36,11 @@ namespace KaleidoscopeGenerator.UI.WPF.Imaging
             set
             {
                 _geometry = value;
-                Drawing.Children.Add(_geometry.Drawing);
+                Model3D.Children.Add(_geometry.Model3D);
             }
         }
 
-        public Transformation2D Transformation
+        public Transformation3D Transformation
         {
             get
             {
@@ -48,19 +49,19 @@ namespace KaleidoscopeGenerator.UI.WPF.Imaging
             set
             {
                 _transformation = value;
-                Drawing.Transform = _transformation.Transform;
+                Model3D.Transform = _transformation.Transform;
             }
         }
 
 
-        public Node2D Clone()
+        public Node3D Clone()
         {
-            var clone = new Node2D();
+            var clone = new Node3D();
             clone.Geometry = Geometry; // no need to deep copy the geometry, all nodes have a reference to the same instance
             if (Transformation != null)
                 clone.Transformation = Transformation.Clone();
-            if (Drawing != null)
-                clone.Drawing = Drawing.Clone();
+            if (Model3D != null)
+                clone.Model3D = Model3D.Clone();
             return clone;
         }
     }

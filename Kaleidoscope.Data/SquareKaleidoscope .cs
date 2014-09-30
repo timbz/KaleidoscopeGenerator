@@ -39,12 +39,20 @@ namespace KaleidoscopeGenerator.Data
 
         private TGeometry CreateSquare(double width, Uri uri)
         {
-            var half = -width / 2;
+            var half = width / 2;
             var points = new List<Tuple<double, double>>();
+            // TODO: support indexed display list
+
+            // first triangle
             points.Add(Tuple.Create(-half, -half));
             points.Add(Tuple.Create(half, -half));
             points.Add(Tuple.Create(half, half));
+
+            // second triangle
+            points.Add(Tuple.Create(half, half));
             points.Add(Tuple.Create(-half, half));
+            points.Add(Tuple.Create(-half, -half));
+
             return _factory.Geometry(uri, points);
         }
 
