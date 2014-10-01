@@ -39,7 +39,7 @@ namespace KaleidoscopeGenerator.UI.WPF.Imaging
         private void OnPropertyChange(object sender, PropertyChangedEventArgs e)
         {
             var context = DataContext as AppModel;
-            if (context != null)
+            if (context != null && IsEnabled)
             {
                 RenderKaleidoscope(context.Settings);
             }
@@ -48,7 +48,7 @@ namespace KaleidoscopeGenerator.UI.WPF.Imaging
         private void OnSizeChanged(Object sender, SizeChangedEventArgs e)
         {
             var context = DataContext as AppModel;
-            if (context != null)
+            if (context != null && IsEnabled)
             {
                 RenderKaleidoscope(context.Settings);
             }

@@ -46,7 +46,7 @@ namespace KaleidoscopeGenerator.UI.WPF.Media3D
         {
             // TODO: looks like context is always null, maybe we dont need this
             var context = DataContext as AppModel;
-            if (context != null)
+            if (context != null && IsEnabled)
             {
                 context.Settings.PropertyChanged -= OnPropertyChange;
             }
@@ -55,7 +55,7 @@ namespace KaleidoscopeGenerator.UI.WPF.Media3D
         private void OnPropertyChange(object sender, PropertyChangedEventArgs e)
         {
             var context = DataContext as AppModel;
-            if (context != null)
+            if (context != null && IsEnabled)
             {
                 RenderKaleidoscope(context.Settings);
             }
