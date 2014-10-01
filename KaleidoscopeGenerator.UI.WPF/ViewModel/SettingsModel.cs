@@ -47,7 +47,7 @@ namespace KaleidoscopeGenerator.UI.WPF.ViewModel
 
         public SettingsModel()
         {
-            _minGeometryWidth = 50;
+            _minGeometryWidth = 100;
             _maxGeometryWidth = 400;
             _geometryWidth = 200;
             _imagePath = Path.GetFullPath(@"Assets/default.png"); ;

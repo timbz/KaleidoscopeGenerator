@@ -54,10 +54,10 @@ namespace KaleidoscopeGenerator.UI.WPF.Media3D
 
         private void OnPropertyChange(object sender, PropertyChangedEventArgs e)
         {
-            var settings = sender as SettingsModel;
-            if (settings != null)
+            var context = DataContext as AppModel;
+            if (context != null)
             {
-                RenderKaleidoscope(settings);
+                RenderKaleidoscope(context.Settings);
             }
         }
 
