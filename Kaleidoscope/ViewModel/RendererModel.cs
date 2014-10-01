@@ -10,7 +10,7 @@ namespace KaleidoscopeGenerator.UI.WPF.ViewModel
         public RendererModel()
         {
             _availableRendererTypes = new string[] { "2D", "3D" };
-            RendererType = _availableRendererTypes[1];
+            RendererType = _availableRendererTypes[0];
         }
 
         public string[] AvailableRendererTypes
@@ -49,6 +49,11 @@ namespace KaleidoscopeGenerator.UI.WPF.ViewModel
                     OnPropertyChanged("RendererTypeOther");
                 }
             }
+        }
+
+        public void SwitchRendererType()
+        {
+            RendererType = RendererTypeOther;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -20,28 +20,14 @@ namespace KaleidoscopeGenerator.UI.WPF
                 Settings = new SettingsModel(),
                 Renderer = new RendererModel()
             };
-            ((AppModel)DataContext).Renderer.PropertyChanged += OnPropertyChange;
             _fileSystem = new XmlInteraction();
         }
 
-        private void OnPropertyChange(object sender, PropertyChangedEventArgs e)
+        void OnClickSwitchRenderer(object sender, RoutedEventArgs a)
         {
-            System.Console.WriteLine("Property changed: " + e.PropertyName + " to " + ((AppModel)DataContext).Renderer.RendererType);
+            ((AppModel)DataContext).Renderer.SwitchRendererType();
         }
 
-
-        void OnClickTest(object sender, RoutedEventArgs a)
-        {
-            var ren = ((AppModel)DataContext).Renderer;
-            if (ren.RendererType == "2D")
-            {
-                ren.RendererType = "3D";
-            }
-            else
-            {
-                ren.RendererType = "2D";
-            }
-        }
         void OnClickSelectImage(object sender, RoutedEventArgs a)
         {
             var dlg = new OpenFileDialog();

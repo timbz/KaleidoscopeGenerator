@@ -97,7 +97,7 @@
 	    Margin="10,160,40,0"
 	    VerticalAlignment="Top"
 	    Width="120"
-      Click="OnClickTest"
+      Click="OnClickSwitchRenderer"
       />
     <ContentControl Content="{Binding }" Grid.Column="1" />
   </Grid>

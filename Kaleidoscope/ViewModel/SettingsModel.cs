@@ -65,7 +65,7 @@ namespace KaleidoscopeGenerator.UI.WPF.ViewModel
                     Type = KaleidoscopeTypes.Square
                 }
             };
-            _selectedKaleidoscopeType = _availableKaleidoscopeTypes[1];
+            _selectedKaleidoscopeType = _availableKaleidoscopeTypes[0];
         }
 
         public KaleidoscopeTypeComboxBoxItem[] AvailableKaleidoscopeTypes
