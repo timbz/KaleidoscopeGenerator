@@ -28,29 +28,34 @@ namespace KaleidoscopeGenerator.UI.WPF.Imaging
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            // settings is null, maybe we dont need this
-            //var settings = ((AppModel)DataContext).Settings;
-            //settings.PropertyChanged -= OnPropertyChange;
+            // TODO: looks like context is always null, maybe we dont need this
+            var context = DataContext as AppModel;
+            if (context != null)
+            {
+                context.Settings.PropertyChanged -= OnPropertyChange;
+            }
         }
 
         private void OnPropertyChange(object sender, PropertyChangedEventArgs e)
         {
-            System.Console.WriteLine("Property changed: " + e.PropertyName);
-            RenderKaleidoscope();
+            var context = DataContext as AppModel;
+            if (context != null)
+            {
+                RenderKaleidoscope(context.Settings);
+            }
         }
 
         private void OnSizeChanged(Object sender, SizeChangedEventArgs e)
         {
-            RenderKaleidoscope();
+            var context = DataContext as AppModel;
+            if (context != null)
+            {
+                RenderKaleidoscope(context.Settings);
+            }
         }
 
-        private void RenderKaleidoscope()
+        private void RenderKaleidoscope(SettingsModel settings)
         {
-            var context = DataContext as AppModel;
-            if (context == null)
-                return;
-            var settings = context.Settings;
-
             var kaleidoscope = _kaleidoscopes.Get(settings.SelectedKaleidoscopeType.Type);
             var imageUri = new Uri(settings.ImagePath, UriKind.Absolute);
             var rootNode = kaleidoscope.Generate(settings.GeometryWidth, imageUri, ActualWidth, ActualHeight);

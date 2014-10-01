@@ -44,7 +44,7 @@ namespace KaleidoscopeGenerator.UI.WPF.Media3D
 
         private void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            // settings is null, maybe we dont need this
+            // TODO: looks like context is always null, maybe we dont need this
             var context = DataContext as AppModel;
             if (context != null)
             {
@@ -54,30 +54,32 @@ namespace KaleidoscopeGenerator.UI.WPF.Media3D
 
         private void OnPropertyChange(object sender, PropertyChangedEventArgs e)
         {
-            System.Console.WriteLine("Property changed: " + e.PropertyName);
-            RenderKaleidoscope();
+            var context = DataContext as AppModel;
+            if (context != null)
+            {
+                RenderKaleidoscope(context.Settings);
+            }
         }
 
         private void OnSizeChanged(Object sender, SizeChangedEventArgs e)
         {
-            SetCameraPosition();
-            RenderKaleidoscope();
+            var context = DataContext as AppModel;
+            if (context != null)
+            {
+                SetCameraPosition(); 
+                RenderKaleidoscope(context.Settings);
+            }
         }
 
         private void SetCameraPosition()
         {
-            // this position calculation makes the resulting image look the 2d version
+            // this position calculation makes the resulting image look like the 2d version
             var z = ActualWidth * 1067 / 884;
             _camera.Position = new Point3D(0, 0, z);
         }
 
-        private void RenderKaleidoscope()
+        private void RenderKaleidoscope(SettingsModel settings)
         {
-            var context = DataContext as AppModel;
-            if (context == null)
-                return;
-            var settings = context.Settings;
-
             var kaleidoscope = _kaleidoscopes.Get(settings.SelectedKaleidoscopeType.Type);
             var imageUri = new Uri(settings.ImagePath, UriKind.Absolute);
             var rootNode = kaleidoscope.Generate(settings.GeometryWidth, imageUri, ActualWidth, ActualHeight);
