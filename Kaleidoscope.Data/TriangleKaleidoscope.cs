@@ -65,7 +65,6 @@ namespace KaleidoscopeGenerator.Data
             var verticalElementsPerSide = (int)(canvasHeight / triagleHeight / 2) + 1;
             GenerateColumnsFromMiddleRow(root, verticalElementsPerSide);
             var numberOfNodes = (horizontalElementPerSide * 2 + 1) * (verticalElementsPerSide * 2 + 1);
-            System.Console.WriteLine("Nodes " + numberOfNodes);
             return root;
         }
 

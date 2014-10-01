@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaleidoscopeGenerator.UI.WP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaleidoscopeGenerator.Data", "Kaleidoscope.Data\KaleidoscopeGenerator.Data.csproj", "{1771A349-32E5-4080-BAAC-111536F33286}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaleidoscopeGenerator.Data.Test", "KaleidoscopeGenerator.Data.Test\KaleidoscopeGenerator.Data.Test.csproj", "{9B867B40-0D1D-499B-8C7C-75F0ACA1E56F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1771A349-32E5-4080-BAAC-111536F33286}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1771A349-32E5-4080-BAAC-111536F33286}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1771A349-32E5-4080-BAAC-111536F33286}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B867B40-0D1D-499B-8C7C-75F0ACA1E56F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B867B40-0D1D-499B-8C7C-75F0ACA1E56F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B867B40-0D1D-499B-8C7C-75F0ACA1E56F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B867B40-0D1D-499B-8C7C-75F0ACA1E56F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
