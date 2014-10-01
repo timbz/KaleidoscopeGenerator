@@ -53,7 +53,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Kaleidoscope.Data\KaleidoscopeGenerator.Data.csproj">
+    <ProjectReference Include="..\KaleidoscopeGenerator.Data\KaleidoscopeGenerator.Data.csproj">
       <Project>{1771a349-32e5-4080-baac-111536f33286}</Project>
       <Name>KaleidoscopeGenerator.Data</Name>
     </ProjectReference>

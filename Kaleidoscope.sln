@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2013 for Windows Desktop
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaleidoscopeGenerator.UI.WPF", "Kaleidoscope\KaleidoscopeGenerator.UI.WPF.csproj", "{D79F3BBA-462C-47A4-9A75-B3A2892227F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaleidoscopeGenerator.UI.WPF", "KaleidoscopeGenerator.UI.WPF\KaleidoscopeGenerator.UI.WPF.csproj", "{D79F3BBA-462C-47A4-9A75-B3A2892227F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaleidoscopeGenerator.Data", "Kaleidoscope.Data\KaleidoscopeGenerator.Data.csproj", "{1771A349-32E5-4080-BAAC-111536F33286}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaleidoscopeGenerator.Data", "KaleidoscopeGenerator.Data\KaleidoscopeGenerator.Data.csproj", "{1771A349-32E5-4080-BAAC-111536F33286}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaleidoscopeGenerator.Data.Test", "KaleidoscopeGenerator.Data.Test\KaleidoscopeGenerator.Data.Test.csproj", "{9B867B40-0D1D-499B-8C7C-75F0ACA1E56F}"
 EndProject
