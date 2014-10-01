@@ -2,8 +2,7 @@
 
 This is an implementation of kaleidoscope pattern generator written in C#.
 
-![Real Kaleidoscope](https://raw.githubusercontent.com/timonbaetz/KaleidoscopeGenerator/master/data/kaleidoscope.jpg)
-
+![Kaleidoscope](https://raw.githubusercontent.com/timonbaetz/KaleidoscopeGenerator/master/data/kaleidoscope.jpg)
 
 ### Features:
 
@@ -86,9 +85,9 @@ Original | Result
 
 Original | Result
 ------------ | -------------
-![demo](https://raw.githubusercontent.com/timonbaetz/KaleidoscopeGenerator/master/data/demo/original/0.jpg) | ![demo](https://raw.githubusercontent.com/timonbaetz/KaleidoscopeGenerator/master/data/demo/generated/0.png)
-![demo](https://raw.githubusercontent.com/timonbaetz/KaleidoscopeGenerator/master/data/demo/original/1.jpg) | ![demo](https://raw.githubusercontent.com/timonbaetz/KaleidoscopeGenerator/master/data/demo/generated/1.png)
-![demo](https://raw.githubusercontent.com/timonbaetz/KaleidoscopeGenerator/master/data/demo/original/2.jpg) | ![demo](https://raw.githubusercontent.com/timonbaetz/KaleidoscopeGenerator/master/data/demo/generated/2.png)
+![demo](https://raw.githubusercontent.com/timonbaetz/KaleidoscopeGenerator/master/data/demo/original/3.jpg) | ![demo](https://raw.githubusercontent.com/timonbaetz/KaleidoscopeGenerator/master/data/demo/generated/3.png)
+![demo](https://raw.githubusercontent.com/timonbaetz/KaleidoscopeGenerator/master/data/demo/original/4.jpg) | ![demo](https://raw.githubusercontent.com/timonbaetz/KaleidoscopeGenerator/master/data/demo/generated/4.png)
+![demo](https://raw.githubusercontent.com/timonbaetz/KaleidoscopeGenerator/master/data/demo/original/5.jpg) | ![demo](https://raw.githubusercontent.com/timonbaetz/KaleidoscopeGenerator/master/data/demo/generated/5.png)
 
 ## TODO
 
