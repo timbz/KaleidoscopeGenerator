@@ -52,7 +52,7 @@ To use the generation library a client has to implement 3 interfaces:
 * `KaleidoscopeGenerator.Data.ÌGeometry`
 * `KaleidoscopeGenerator.Data.ÌTransformation`
 
-The main interface to library is generic factory:
+The main interface to library is a generic factory:
 
 ```c#
 var factory = new KaleidoscopeFactory<NodeImpl, GeometryImpl, TransformationImpl>();
@@ -94,8 +94,7 @@ Original | Result
 * Improve robustness of the loading and saving functionality
   * Refactor exception handling
   * Better user error notifications
-* Add fading per level support the generation algorithms
 * Improve performance by resizing loaded images if they are too big
-* GUI Styling
+* Add fading per level support to the generation algorithms
 * Move Viewpord2D and Viewport3DExt code into a ViewModel (confom to MVVM pattern)
 * Add a GUI Clinet based on Gtk that runs on Unix systems (including OSX) through the mono rutime
