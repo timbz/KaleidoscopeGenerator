@@ -99,7 +99,14 @@
             </Grid>
             <Separator Style="{StaticResource Spacer}"/>
             <Grid>
-              <TextBlock Text="Mirror size:" />
+              <TextBlock>
+                <TextBlock.Text>
+                  <MultiBinding StringFormat="{}Mirror size [{0}-{1}]:" Mode="OneWay">
+                    <Binding Path="Settings.MinGeometryWidth" />
+                    <Binding Path="Settings.MaxGeometryWidth" />
+                  </MultiBinding>
+                </TextBlock.Text>
+              </TextBlock>
               <TextBox HorizontalAlignment="Right">
                 <TextBox.Text>
                   <Binding Path="Settings.GeometryWidth" UpdateSourceTrigger="PropertyChanged">

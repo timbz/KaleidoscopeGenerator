@@ -92,9 +92,10 @@ Original | Result
 ## TODO
 
 * Improve robustness of the loading and saving functionality
-  * Refactor exception handling
+  * Refactor exception handling (Wrap framework exception)
   * Better user error notifications
 * Improve performance by resizing loaded images if they are too big
 * Add fading per level support to the generation algorithms
 * Move Viewpord2D and Viewport3DExt code into a ViewModel (confom to MVVM pattern)
 * Add a GUI Clinet based on Gtk that runs on Unix systems (including OSX) through the mono rutime
+* Add animated texture support

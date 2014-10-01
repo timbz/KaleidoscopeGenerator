@@ -37,7 +37,16 @@ namespace KaleidoscopeGenerator.UI.WPF
             if (result == true)
             {
                 var settings = ((AppModel)DataContext).Settings;
-                settings.ImagePath = dlg.FileName;
+                var oldPaht = settings.ImagePath;
+                try
+                {
+                    settings.ImagePath = dlg.FileName;
+                }
+                catch (Exception e)
+                {
+                    settings.ImagePath = oldPaht;
+                    MessageBox.Show(e.Message);
+                }
             }
         }
 
