@@ -12,7 +12,7 @@ namespace KaleidoscopeGenerator.UI.WPF.ViewModel
         public class KaleidoscopeTypeComboxBoxItem
         {
             public string Name { get; set; }
-            public KaleidoscopeType Type { get; set; }
+            public KaleidoscopeTypes Type { get; set; }
 
             public override int GetHashCode()
             {
@@ -57,12 +57,12 @@ namespace KaleidoscopeGenerator.UI.WPF.ViewModel
                 new KaleidoscopeTypeComboxBoxItem()
                 {
                     Name = "3",
-                    Type = KaleidoscopeType.TRIANGLE
+                    Type = KaleidoscopeTypes.Triangle
                 },
                 new KaleidoscopeTypeComboxBoxItem()
                 {
                     Name = "4",
-                    Type = KaleidoscopeType.SQUARE
+                    Type = KaleidoscopeTypes.Square
                 }
             };
             _selectedKaleidoscopeType = _availableKaleidoscopeTypes[1];

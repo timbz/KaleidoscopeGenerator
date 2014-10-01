@@ -1,8 +1,8 @@
 ﻿namespace KaleidoscopeGenerator.Data
 {
-    public enum KaleidoscopeType
+    public enum KaleidoscopeTypes
     {
-        TRIANGLE,
-        SQUARE
+        Triangle,
+        Square
     }
 }

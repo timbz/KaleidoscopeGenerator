@@ -8,14 +8,14 @@ namespace KaleidoscopeGenerator.Data
         where TGeometry : IGeometry<TNode, TGeometry, TTransformation>, new()
         where TTransformation : ITransformation<TNode, TGeometry, TTransformation>, new()
     {
-        private Dictionary<KaleidoscopeType, IKaleidoscope<TNode, TGeometry, TTransformation>> _instanceCache;
+        private Dictionary<KaleidoscopeTypes, IKaleidoscope<TNode, TGeometry, TTransformation>> _instanceCache;
 
         public KaleidoscopeFactory()
         {
-            _instanceCache = new Dictionary<KaleidoscopeType, IKaleidoscope<TNode, TGeometry, TTransformation>>();
+            _instanceCache = new Dictionary<KaleidoscopeTypes, IKaleidoscope<TNode, TGeometry, TTransformation>>();
         }
 
-        public IKaleidoscope<TNode, TGeometry, TTransformation> Get(KaleidoscopeType type)
+        public IKaleidoscope<TNode, TGeometry, TTransformation> Get(KaleidoscopeTypes type)
          {
              if (_instanceCache.ContainsKey(type))
              {
@@ -23,11 +23,11 @@ namespace KaleidoscopeGenerator.Data
              }
              switch (type)
              {
-                 case KaleidoscopeType.TRIANGLE:
+                 case KaleidoscopeTypes.Triangle:
                      var triangleInstance = new TriangleKaleidoscope<TNode, TGeometry, TTransformation>();
                      _instanceCache[type] = triangleInstance;
                      return triangleInstance;
-                 case KaleidoscopeType.SQUARE:
+                 case KaleidoscopeTypes.Square:
                      var squareInstance = new SquareKaleidoscope<TNode, TGeometry, TTransformation>();
                      _instanceCache[type] = squareInstance;
                      return squareInstance;
