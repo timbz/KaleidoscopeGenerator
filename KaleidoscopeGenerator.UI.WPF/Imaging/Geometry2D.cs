@@ -11,7 +11,6 @@ namespace KaleidoscopeGenerator.UI.WPF.Imaging
     {
         private StreamGeometry _geometry;
         private ImageBrush _brush;
-        private BitmapImage _bitmap;
 
         public Geometry2D()
         {
