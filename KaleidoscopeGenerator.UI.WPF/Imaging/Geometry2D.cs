@@ -11,6 +11,7 @@ namespace KaleidoscopeGenerator.UI.WPF.Imaging
     {
         private StreamGeometry _geometry;
         private ImageBrush _brush;
+        private BitmapImage _bitmap;
 
         public Geometry2D()
         {
@@ -29,8 +30,21 @@ namespace KaleidoscopeGenerator.UI.WPF.Imaging
         {
             set
             {
-                _brush.ImageSource = new BitmapImage(value);
+                var source = new BitmapImage();
+
+                // TODO: currently this resized the images to 400px but we should resize depending on the geometry size
+                source.BeginInit();
+                source.UriSource = value;
+                source.DecodePixelHeight = 400;
+                source.DecodePixelWidth = 400;
+                source.EndInit();
+
+                _brush.ImageSource = source;
             }
+        }
+
+        private void LoadBitmap()
+        {
         }
 
         public List<Tuple<double, double>> Points

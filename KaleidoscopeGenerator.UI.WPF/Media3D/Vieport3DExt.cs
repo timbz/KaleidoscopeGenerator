@@ -24,9 +24,8 @@ namespace KaleidoscopeGenerator.UI.WPF.Media3D
         {
             _kaleidoscopes = new KaleidoscopeFactory<Node3D, Geometry3D, Transformation3D>();
             _light = new AmbientLight(Colors.White);
-            Loaded += OnLoaded;
-            Unloaded += OnUnloaded;
             SizeChanged += OnSizeChanged;
+            DataContextChanged += OnDataContextChanged;
             _camera = new PerspectiveCamera()
             {
                 Position= new Point3D(0, 0, 1067), 
@@ -36,26 +35,24 @@ namespace KaleidoscopeGenerator.UI.WPF.Media3D
             Camera = _camera;
         }
 
-        private void OnLoaded(object sender, RoutedEventArgs e)
+        private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            var settings = ((AppModel)DataContext).Settings;
-            settings.PropertyChanged += OnPropertyChange;
-        }
-
-        private void OnUnloaded(object sender, RoutedEventArgs e)
-        {
-            // TODO: looks like context is always null, maybe we dont need this
-            var context = DataContext as AppModel;
-            if (context != null && IsEnabled)
+            var newContext = e.NewValue as AppModel;
+            if (newContext != null)
             {
-                context.Settings.PropertyChanged -= OnPropertyChange;
+                newContext.Settings.PropertyChanged += OnPropertyChange;
+            }
+            var olsContext = e.OldValue as AppModel;
+            if (olsContext != null)
+            {
+                olsContext.Settings.PropertyChanged -= OnPropertyChange;
             }
         }
 
         private void OnPropertyChange(object sender, PropertyChangedEventArgs e)
         {
             var context = DataContext as AppModel;
-            if (context != null && IsEnabled)
+            if (context != null)
             {
                 RenderKaleidoscope(context.Settings);
             }
@@ -93,6 +90,7 @@ namespace KaleidoscopeGenerator.UI.WPF.Media3D
             var light = new ModelVisual3D();
             light.Content = _light;
             Children.Add(light);
+            Console.WriteLine("done");
         }
     }
 }

@@ -19,7 +19,6 @@ namespace KaleidoscopeGenerator.UI.WPF.Media3D
             _brush = new ImageBrush();
 
             Material material = new DiffuseMaterial(_brush);
-            //material = new DiffuseMaterial(new SolidColorBrush(Colors.Violet));
             Model3D = new GeometryModel3D(_geometry, material);
         }
 
@@ -33,7 +32,16 @@ namespace KaleidoscopeGenerator.UI.WPF.Media3D
         {
             set
             {
-                _brush.ImageSource = new BitmapImage(value);
+                var source = new BitmapImage();
+
+                // TODO: currently this resized the images to 400px but we should resize depending on the geometry size
+                source.BeginInit();
+                source.UriSource = value;
+                source.DecodePixelHeight = 400;
+                source.DecodePixelWidth = 400;
+                source.EndInit();
+
+                _brush.ImageSource = source;
             }
         }
 

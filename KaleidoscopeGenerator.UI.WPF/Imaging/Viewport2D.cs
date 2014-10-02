@@ -16,30 +16,27 @@ namespace KaleidoscopeGenerator.UI.WPF.Imaging
         {
             _kaleidoscopes = new KaleidoscopeFactory<Node2D, Geometry2D, Transformation2D>();
             SizeChanged += OnSizeChanged;
-            Loaded += OnLoaded;
-            Unloaded += OnUnloaded;
+            DataContextChanged += OnDataContextChanged;
         }
 
-        private void OnLoaded(object sender, RoutedEventArgs e)
+        private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            var settings = ((AppModel)DataContext).Settings;
-            settings.PropertyChanged += OnPropertyChange;
-        }
-
-        private void OnUnloaded(object sender, RoutedEventArgs e)
-        {
-            // TODO: looks like context is always null, maybe we dont need this
-            var context = DataContext as AppModel;
-            if (context != null)
+            var newContext = e.NewValue as AppModel;
+            if (newContext != null)
             {
-                context.Settings.PropertyChanged -= OnPropertyChange;
+                newContext.Settings.PropertyChanged += OnPropertyChange;
+            }
+            var olsContext = e.OldValue as AppModel;
+            if (olsContext != null)
+            {
+                olsContext.Settings.PropertyChanged -= OnPropertyChange;
             }
         }
 
         private void OnPropertyChange(object sender, PropertyChangedEventArgs e)
         {
             var context = DataContext as AppModel;
-            if (context != null && IsEnabled)
+            if (context != null)
             {
                 RenderKaleidoscope(context.Settings);
             }
