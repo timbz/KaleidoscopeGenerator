@@ -6,6 +6,9 @@ This is an implementation of kaleidoscope pattern generator written in C#.
 
 ### Features:
 
+ * GUI:
+   * Windows Presentation Foundation
+   * Gtk
  * Pattern types:
    * 3 mirror pattern
    * 4 mirror pattern
@@ -15,6 +18,7 @@ This is an implementation of kaleidoscope pattern generator written in C#.
  * Rendering:
    * 2D trough the Windows Presentation Foundation (WPF) [Imaging Component](http://msdn.microsoft.com/en-us/library/ms748873(v=vs.110).aspx)
    * 3D trough Windows Presentation Foundation (WPF) [3-D functionality]( http://msdn.microsoft.com/en-us/library/ms747437(v=vs.110).aspx)
+   * 2D trough [Cairo](http://cairographics.org/)
 
 
 ## Algorithm
@@ -62,7 +66,7 @@ To generate a pattern get an instance of a concrete pattern generator and call `
 var kaleidoscope = new factory.Get(KaleidoscopeTypes.Triangle);
 
 NodeImpl rootNode = kaleidoscope.Generate(
-  geometryWidht,
+  geometryWidth,
   imageUri,
   viewportWidth,
   viewportHeight
@@ -95,6 +99,5 @@ Original | Result
 * Improve performance by resizing loaded images if they are too big
 * Add fading per level support to the generation algorithms
 * Move Viewpord2D and Viewport3DExt code into a ViewModel (confom to MVVM pattern)
-* Add a GUI Client based on Gtk that runs on Unix systems (including OSX) through the mono rutime
 * Add animated texture support
 * Add more tests
