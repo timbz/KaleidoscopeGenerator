@@ -50,7 +50,7 @@ namespace KaleidoscopeGenerator.UI.WPF.ViewModel
             _minGeometryWidth = 100;
             _maxGeometryWidth = 400;
             _geometryWidth = 200;
-            _imagePath = Path.GetFullPath(@"Assets/default.png"); ;
+            _imagePath = Path.GetFullPath(@"Assets/default.png");
 
             _availableKaleidoscopeTypes = new KaleidoscopeTypeComboxBoxItem[] 
             {

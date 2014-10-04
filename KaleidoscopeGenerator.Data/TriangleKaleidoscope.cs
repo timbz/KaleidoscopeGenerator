@@ -60,10 +60,10 @@ namespace KaleidoscopeGenerator.Data
 
             // we generate one row
             var horizontalElementPerSide = (int)(canvasWidth / triagleWidth) + 1;
-            GenerateMiddleRow(root, horizontalElementPerSide);
+			GenerateMiddleRow(root, horizontalElementPerSide);
             // we clone, flip and translate the middle row
             var verticalElementsPerSide = (int)(canvasHeight / triagleHeight / 2) + 1;
-            GenerateColumnsFromMiddleRow(root, verticalElementsPerSide);
+			GenerateColumnsFromMiddleRow(root, verticalElementsPerSide);
             var numberOfNodes = (horizontalElementPerSide * 2 + 1) * (verticalElementsPerSide * 2 + 1);
             return root;
         }
