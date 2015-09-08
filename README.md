@@ -50,9 +50,9 @@ Each node consists of a geometry, a list of child nodes and a transformation tha
 
 To use the generation library a client has to implement 3 interfaces:
 
-* `KaleidoscopeGenerator.Data.ÌNode`
-* `KaleidoscopeGenerator.Data.ÌGeometry`
-* `KaleidoscopeGenerator.Data.ÌTransformation`
+* `KaleidoscopeGenerator.Data.INode`
+* `KaleidoscopeGenerator.Data.IGeometry`
+* `KaleidoscopeGenerator.Data.ITransformation`
 
 The main interface to the library is a generic factory:
 
@@ -63,7 +63,7 @@ var factory = new KaleidoscopeFactory<NodeImpl, GeometryImpl, TransformationImpl
 To generate a pattern get an instance of a concrete pattern generator and call `Generate()`:
 
 ```c#
-var kaleidoscope = new factory.Get(KaleidoscopeTypes.Triangle);
+var kaleidoscope = factory.Get(KaleidoscopeTypes.Triangle);
 
 NodeImpl rootNode = kaleidoscope.Generate(
   geometryWidth,
